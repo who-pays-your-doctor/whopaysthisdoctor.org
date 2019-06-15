@@ -6,7 +6,13 @@
         <hr>
         <h2 class="intro-text text-center">Declarations so far</h2>
         <hr />
-        <table class="table sortable">
+        <div class="search-control">
+          <label>
+            Search for a doctor
+            <input type="text" id="search-field" placeholder="e.g. by surname or where they work" />
+          </label>
+        </div>
+        <table class="table sortable" id="doctor-table">
           <tr>
             <th>Name</th>
             <th>GMC</th>
@@ -14,7 +20,7 @@
             <th>Primary Employer</th>
           </tr>
           {% for doctor in doctors %}
-            <tr>
+            <tr class="doctor">
               <td>
                 <a href="{{doctor.get_absolute_url}}">
                   {{ doctor.name }}
@@ -25,6 +31,7 @@
               <td>{{doctor.primary_employer}}</td>
             </tr>
           {% endfor %}
+          <tr id="no-results"><td colspan="4">No results found</td></tr>
         </table>
       </div>
     </div>

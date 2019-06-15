@@ -25,3 +25,26 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):after {
     content: " \25B4\25BE" 
 }
 
+/* --------
+Doctor search
+----------*/
+.search-control {
+  background: #F7F3ED;
+  border-radius: 6px 6px 0 0;
+  padding: 1em;
+}
+
+.search-control label {
+  margin: 0
+}
+
+.search-control input[type=text] {
+  padding: 0.33em 0.5em;
+  width: 20em;
+  max-width: 80%;
+}
+
+#no-results {
+  background: #F7F3ED;
+  display: none;
+}
