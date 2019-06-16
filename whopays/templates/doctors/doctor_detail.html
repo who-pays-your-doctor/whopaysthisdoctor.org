@@ -8,7 +8,7 @@
       <div class="col-lg-12">
         <hr>
         <h2 class="intro-text text-center">
-          {{ doctor.name }}
+          {{ doctor.name }} {% if doctor.self_created %}<span class="verified verified--yes">✓</span>{% else %}<span class="verified verified--no">?</span>{% endif %}
           <br/><br/>
           <small>Is this you? <a href="{% url 're-establish-identity' pk=doctor.pk %}" class="btn btn-default">Edit my info</a></small>
         </h2>

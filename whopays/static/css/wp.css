@@ -145,6 +145,7 @@ Doctors
   background: #aaa;
   border-radius: 12px;
   color: #fff;
+  cursor: pointer;
   display: inline-block;
   height: 24px;
   padding-top: 2px;
@@ -162,12 +163,17 @@ Doctors
   border-radius: 6px;
   content: "Verified doctors are doctors who self-reported using a NHS email address.";
   display: none;
+  font-size: 14px;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 20em;
   padding: 1em;
   position: absolute;
   left: 1em;
-  z-index: 2;
+  letter-spacing: 0;
+  line-height: 1.4;
   text-align: left;
+  text-transform: none;
+  z-index: 2;
 }
 
 .verified--yes {
