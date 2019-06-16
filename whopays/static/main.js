@@ -64,7 +64,10 @@ search.doSearch = function(keyword) {
   }, 200);
 }
 
-search.init(
-  document.getElementById('search-field'),
-  document.getElementById('doctor-table'),
-);
+let table = document.getElementById('doctor-table');
+if( table ) {
+  search.init(
+    document.getElementById('search-field'),
+    table,
+  );
+}
