@@ -25,6 +25,7 @@ class Doctor(models.Model):
     primary_employer = models.CharField(max_length=200)
     employment_address = models.TextField()
     email = models.EmailField(blank=True, null=True)
+    self_created = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u'{0} - {1}'.format(self.name, self.gmc_number)
@@ -69,6 +70,7 @@ class Declaration(models.Model):
     other_declarations = models.TextField(blank=True, null=True)
     date_created = models.DateField(default=lambda: dt.date.today())
     dt_created = models.DateTimeField(default=lambda: dt.datetime.now())
+    self_created = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u'{0} - {1}'.format(getattr(self, 'doctor', 'Declaration'),
