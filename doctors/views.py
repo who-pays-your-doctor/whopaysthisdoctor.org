@@ -267,7 +267,5 @@ class DoctorListView(ListView):
     # This is dynamic to avoid the date being process-start bounded.
     def get_queryset(self):
         return sorted(set(
-            models.Doctor.objects.filter(
-                declaration__dt_created__lte=dt.datetime.now()-dt.timedelta(hours=1)
-                )
+            models.Doctor.objects.all()
             ), reverse=True)
