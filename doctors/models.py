@@ -198,3 +198,6 @@ class ImportedDoctorCompanyLink(models.Model):
     company = models.CharField(max_length=200)
     officer_link = models.URLField(max_length=300)
     company_link = models.URLField(max_length=300)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.company)
