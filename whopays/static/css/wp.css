@@ -134,8 +134,24 @@ Homepage actions
 }
 
 /* --------
-Doctor search
+Doctors
 ----------*/
+
+.verified {
+  background: #aaa;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  height: 24px;
+  padding-top: 2px;
+  text-align: center;
+  width: 24px;
+}
+
+.verified--yes {
+  background-color: #70D006;
+}
+
 .search-control {
   background: #e6ebf1;
   border-radius: 6px 6px 0 0;
