@@ -29,7 +29,8 @@ urlpatterns = patterns(
     url(r'^re-establish/pending$', TemplateView.as_view(template_name='identity_pending.html'),
         name='re-establish-identity-pending'),
 
-    url(r'^declare/(?P<key>[0-9a-z]+)$', doctors.views.DeclareView.as_view(), name='declare'),
+    url(r'^declare/thirdparty$', doctors.views.DeclareView.as_view(), { 'self_reported': 0 },name='declare'),
+    url(r'^declare/(?P<key>[0-9a-z]+)$', doctors.views.DeclareView.as_view(), { 'self_reported': 1 }, name='declare'),
 
     url(r'^declare/(?P<pk>\d+)/add/(?P<key>[0-9a-z]+)/?$', doctors.views.AddDeclarationView.as_view(), name='add'),
 

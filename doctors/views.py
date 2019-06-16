@@ -145,15 +145,19 @@ class DeclareView(NamedFormsetsMixin, CreateWithInlinesView):
         ]
 
     def dispatch(self, *args, **kwargs):
-        link = get_object_or_404(models.DeclarationLink, key=kwargs['key'])
-        if link.expires < timezone.now():
-            raise Http404
-        doctor = models.Doctor.objects.filter(email=link.email).count()
-        if doctor > 0:
-            kwargs['pk'] = models.Doctor.objects.get(email=link.email).pk
-            return redirect(reverse('add', kwargs=kwargs))
-        self.link = link
-        return super(DeclareView, self).dispatch(*args, **kwargs)
+
+        if kwargs['self_reported'] == 0:
+            return super(DeclareView, self).dispatch(*args, **kwargs)
+        else:
+            link = get_object_or_404(models.DeclarationLink, key=kwargs['key'])
+            if link.expires < timezone.now():
+                raise Http404
+            doctor = models.Doctor.objects.filter(email=link.email).count()
+            if doctor > 0:
+                kwargs['pk'] = models.Doctor.objects.get(email=link.email).pk
+                return redirect(reverse('add', kwargs=kwargs))
+            self.link = link
+            return super(DeclareView, self).dispatch(*args, **kwargs)
 
     def forms_valid(self, form, inlines):
         """
