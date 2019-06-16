@@ -10,12 +10,17 @@
       <div class="box">
         <div class="col-lg-12">
           <hr>
-          <h2 class="intro-text text-center">Declare your interests</h2>
+          <h2 class="intro-text text-center">Declare interests</h2>
           <hr />
           <p>
-            You are able to use this form to declare any financial interests in the last 12 months, or since your last
-            declaration, relating to income received other than from your "primary employer" given below. 
-	    If in doubt, it is always best to declare income.
+
+            {% if view.kwargs.self_reported == 1 %}
+              You are able to use this form to declare any financial interests in the last 12 months, or since your last
+              declaration, relating to income received other than from your "primary employer" given below.
+              If in doubt, it is always best to declare income.
+            {% else %}
+              You are able to use this form to declare any financial interests you perceive a doctor to have.
+            {% endif %}
           </p>
         </div>
       </div>
@@ -43,11 +48,15 @@
           <h2 class="intro-text text-center">Section 2: Declaration</h2>
           <hr>
           <p>
-            Please include the personal receipt of any benefits from a pharmaceutical company or other sources. This might include speaker’s fees, honoraria, expenses or any significant gifts or payments in kind.
+            {% if view.kwargs.self_reported %}
+              Please include the personal receipt of any benefits from a pharmaceutical company or other sources. This might include speaker’s fees, honoraria, expenses or any significant gifts or payments in kind.
+            {% else %}
+              Please link to public domain sources of any benefits from a pharmaceutical company or other sources.
+            {% endif %}
           </p>
           <div class="row">
             <div class="form-group">
-              <label class="control-label col-sm-2 col-lg-2 ">Do you have any Financial Interests to declare?</label>
+              <label class="control-label col-sm-2 col-lg-2 ">Do {% if view.kwargs.self_reported %} you {% else %} they {% endif %} have any Financial Interests to declare?</label>
               <div class=" col-sm-10 col-lg-10 ">
                 <div class="radio">
                   <label class="radio">
@@ -120,7 +129,7 @@
             <h2 class="intro-text text-center">Section 5: Other financial interests that might be of relevance</h2>
             <hr />
             <p>
-              This might include employment or sources of income other than your main employer given in section 1, for
+              This might include employment or sources of income other than  {% if view.kwargs.self_reported %} your {% else %} their {% endif %} main employer given in section 1, for
               example, shares in companies, patents, a role in a private medical company, or media related work.
             </p>
             {{ FeeBenefits.management_form }}
@@ -138,11 +147,11 @@
         <div class="box">
           <div class="col-lg-12">
             <hr />
-            <h2 class="intro-text text-center">Section 6:  Research grants paid by private institutions to your department</h2>
+            <h2 class="intro-text text-center">Section 6:  Research grants paid by private institutions to {% if view.kwargs.self_reported %} your {% else %} their {% endif %} department</h2>
             <hr />
             <p>
-              This section only relates to research grants received where you have direct involvement in the work related to the
-              receipt of funds paid to your department.
+              This section only relates to research grants received where {% if view.kwargs.self_reported %} you {% else %} they {% endif %} have direct involvement in the work related to the
+              receipt of funds paid to {% if view.kwargs.self_reported %} your {% else %} their {% endif %} department.
             </p>
             {{ GrantBenefits.management_form }}
             {% for f in GrantBenefits %}
@@ -162,7 +171,7 @@
       {% endif %}
       {{ Declaration.management_form }}
       {% for f in Declaration %}
-        {% if forloop.first %}
+        {% if forloop.first and view.kwargs.self_reported %}
           <div class="row">
             <div class="box">
               <div class="col-lg-12">
