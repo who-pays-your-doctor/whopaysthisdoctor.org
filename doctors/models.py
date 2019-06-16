@@ -20,7 +20,12 @@ class WPTDMessage(letter.Letter):
 
 class Doctor(models.Model):
     name = models.CharField(max_length=200)
-    gmc_number = models.CharField(max_length=100, unique=True)
+    gmc_number = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        unique=True
+    )
     job_title = models.CharField(max_length=200)
     primary_employer = models.CharField(max_length=200)
     employment_address = models.TextField()
@@ -198,3 +203,6 @@ class ImportedDoctorCompanyLink(models.Model):
     company = models.CharField(max_length=200)
     officer_link = models.URLField(max_length=300)
     company_link = models.URLField(max_length=300)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.company)
