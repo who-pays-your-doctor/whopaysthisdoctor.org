@@ -144,8 +144,26 @@ Doctors
   display: inline-block;
   height: 24px;
   padding-top: 2px;
+  position: relative;
   text-align: center;
   width: 24px;
+}
+
+.verified:hover::after {
+    display: block
+}
+
+.verified::after {
+  background: #1A3862;
+  border-radius: 6px;
+  content: "Verified doctors are doctors who self-reported using a NHS email address.";
+  display: none;
+  width: 20em;
+  padding: 1em;
+  position: absolute;
+  left: 1em;
+  z-index: 2;
+  text-align: left;
 }
 
 .verified--yes {
