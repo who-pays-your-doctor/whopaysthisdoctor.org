@@ -36,6 +36,7 @@ class Doctor(models.Model):
     def to_dict(self):
         return dict(
             name=self.name,
+            self_created=self.self_created,
             gmc_number=self.gmc_number,
             job_title=self.job_title,
             primary_employer=self.primary_employer,
@@ -79,6 +80,7 @@ class Declaration(models.Model):
     def to_dict(self):
         return dict(
             date=self.date_created.strftime('%Y-%m-%dT%H:%M:%S'),
+            self_created=self.self_created,
             past_declarations=self.past_declarations,
             other_declarations=self.other_declarations,
             benefits=dict(
