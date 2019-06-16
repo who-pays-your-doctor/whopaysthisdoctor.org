@@ -39,8 +39,7 @@ class Doctor(models.Model):
             job_title=self.job_title,
             primary_employer=self.primary_employer,
             employment_address=self.employment_address,
-            declarations=[d.to_dict() for d in self.declaration_set.all()],
-            self_reported=self.self_reported
+            declarations=[d.to_dict() for d in self.declaration_set.all()]
             )
 
     def send_declaration_thanks(self):
