@@ -25,6 +25,7 @@ class Doctor(models.Model):
     primary_employer = models.CharField(max_length=200)
     employment_address = models.TextField()
     email = models.EmailField(blank=True, null=True)
+    self_created = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u'{0} - {1}'.format(self.name, self.gmc_number)
@@ -35,6 +36,7 @@ class Doctor(models.Model):
     def to_dict(self):
         return dict(
             name=self.name,
+            self_created=self.self_created,
             gmc_number=self.gmc_number,
             job_title=self.job_title,
             primary_employer=self.primary_employer,
@@ -69,6 +71,7 @@ class Declaration(models.Model):
     other_declarations = models.TextField(blank=True, null=True)
     date_created = models.DateField(default=lambda: dt.date.today())
     dt_created = models.DateTimeField(default=lambda: dt.datetime.now())
+    self_created = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u'{0} - {1}'.format(getattr(self, 'doctor', 'Declaration'),
@@ -77,6 +80,7 @@ class Declaration(models.Model):
     def to_dict(self):
         return dict(
             date=self.date_created.strftime('%Y-%m-%dT%H:%M:%S'),
+            self_created=self.self_created,
             past_declarations=self.past_declarations,
             other_declarations=self.other_declarations,
             benefits=dict(

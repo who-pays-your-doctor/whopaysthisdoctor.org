@@ -9,7 +9,6 @@ class Command(BaseCommand):
         parser.add_argument('data', help='JSON data')
 
     def handle(self, *args, **options):
-        self.stdout.write(args[0])
         with open (args[0], "r") as myfile:
             data=myfile.read()
 
