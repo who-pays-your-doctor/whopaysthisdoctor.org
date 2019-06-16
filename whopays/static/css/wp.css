@@ -59,12 +59,16 @@ Navbar
 .navbar-default .navbar-nav li a {
   color: #0E1217;
 }
-
+  
 .navbar-default .navbar-nav li a:hover,
 .navbar-default .navbar-nav li a:active,
 .navbar-default .navbar-nav li a:focus {
   background: #1A3862;
   color: #fff;
+}
+
+.navbar-default .navbar-nav li.current a {
+  background: #CBD4E0;
 }
 
 /* --------
